@@ -4,14 +4,6 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -23,5 +15,80 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 5px;
+  width: 100px;
+  background: linear-gradient(#fff 0 0) right/51% 100% no-repeat;
+  display: flex;
+  animation: l10-0 2s linear infinite;
+  border-radius: 100px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  width: 25px;
+  background: #fff;
+  border-radius: 100px;
+  animation: l10-1 2s linear infinite;
+}
+.loader:after {
+  animation-delay: -1s;
+  --s: -1;
+}
+@keyframes l10-1 {
+  0%,
+  100% {
+    transform: scaleX(var(--s, 1)) rotate(0);
+  }
+  25%,
+  75% {
+    transform: scaleX(var(--s, 1)) rotate(180deg);
+  }
+}
+
+@keyframes l10-0 {
+  0%,
+  49.9% {
+    transform: scaleX(1);
+  }
+  50%,
+  100% {
+    transform: scaleX(-1);
+  }
+}
+
+.custom-search input:hover,
+.custom-search input:focus {
+  border: 1px solid transparent !important;
+}
+
+.animated-gradient {
+  background: linear-gradient(135deg, #9b59b6, #e67e22, #c0392b, #00bfff);
+
+  background-size: 400%;
+  animation: gradient-animation 8s ease infinite;
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
