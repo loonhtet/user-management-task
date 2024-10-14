@@ -6,7 +6,7 @@ import { Link } from "next-view-transitions";
 import React from "react";
 import { useQuery } from "react-query";
 
-export default function page({ params }) {
+export default function Page({ params }) {
   // Start Fetch data using React Query
   const { data, isLoading, isError, error } = useQuery(
     ["data", params.id],
@@ -66,6 +66,7 @@ export default function page({ params }) {
           <div className="w-full lg:w-3/4 grid gap-y-12 lg:gap-y-0 gap-x-4 mx-3 lg:mx-0 my-12 items-center">
             <Image
               src={data.image}
+              alt={data.id}
               width={500}
               height={500}
               className="w-56 h-56 rounded-lg object-cover"

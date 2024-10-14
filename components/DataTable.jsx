@@ -70,7 +70,7 @@ export default function DataTable() {
   // End Handle Loading State
 
   return (
-    <div className="grid gap-y-4 w-4/5 mx-auto">
+    <div className="grid gap-y-4 w-5/6  md:w-4/5 mx-auto">
       <h1 className="text-center text-stone-200 font-semibold text-4xl font-[family-name:var(--font-noto)]">
         User Dashboard
       </h1>
@@ -83,31 +83,34 @@ export default function DataTable() {
         />
       </div>
 
-      <Table
-        title={() => (
-          <p className="font-[family-name:var(--font-roboto)]">
-            All Users: <span className="font-bold">{data.total}</span>
-          </p>
-        )}
-        dataSource={data.users || []} // Use fetched data or empty array
-        columns={columns} // Table columns
-        loading={isFetching} // Show loading indicator while fetching
-        pagination={{
-          current: currentPage, // Current page
-          pageSize: pageSize, // Number of items per page
-          total: data?.total || 0, // Total number of items
+      <div className="overflow-x-auto">
+        <Table
+          title={() => (
+            <p className="font-[family-name:var(--font-roboto)]">
+              All Users: <span className="font-bold">{data.total}</span>
+            </p>
+          )}
+          dataSource={data.users || []} // Use fetched data or empty array
+          columns={columns} // Table columns
+          loading={isFetching} // Show loading indicator while fetching
+          pagination={{
+            current: currentPage, // Current page
+            pageSize: pageSize, // Number of items per page
+            total: data?.total || 0, // Total number of items
 
-          position: ["bottomCenter"],
-        }}
-        onChange={handleTableChange} // Handles pagination change
-        rowKey={data.users.id} // Unique key for each row
-        defaultSortOrder={sortOrder} // Default sort order for initial load
-        bordered={true}
-        scroll={{
-          y: 500,
-        }}
-        size="middle"
-      />
+            position: ["bottomCenter"],
+          }}
+          onChange={handleTableChange} // Handles pagination change
+          rowKey={data.users.id} // Unique key for each row
+          defaultSortOrder={sortOrder} // Default sort order for initial load
+          bordered={true}
+          scroll={{
+            x: "max-content",
+            y: 500,
+          }}
+          size="middle"
+        />
+      </div>
     </div>
   );
 }
