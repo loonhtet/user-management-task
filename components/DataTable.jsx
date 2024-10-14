@@ -19,7 +19,7 @@ export default function DataTable() {
   const [sortOrder, setSortOrder] = useState("ascend");
 
   // Start Handle table changes for pagination
-  const handleTableChange = (pagination, sorter) => {
+  const handleTableChange = (pagination, filter, sorter) => {
     setCurrentPage(pagination.current); // Update current page
     setPageSize(pagination.pageSize); // Update page size
 
